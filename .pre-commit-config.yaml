@@ -1,0 +1,33 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^Dockerfile$
+      - id: end-of-file-fixer
+        exclude: ^Dockerfile$
+      - id: check-yaml
+        exclude: ^Dockerfile$
+      - id: check-json
+        exclude: ^Dockerfile$
+      - id: check-added-large-files
+        exclude: ^Dockerfile$
+
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+        exclude: ^Dockerfile$
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        exclude: ^Dockerfile$
+        args: [--max-line-length=120]
+
+  - repo: https://github.com/necaris/pre-commit-pyright
+    rev: '1.1.53'
+    hooks:
+      - id: pyright
+        exclude: ^Dockerfile$
