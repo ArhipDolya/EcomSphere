@@ -3,31 +3,31 @@ repos:
     rev: v4.0.1
     hooks:
       - id: trailing-whitespace
-        exclude: ^.*Dockerfile$
+        exclude: ^.*(Dockerfile|docker-compose\.yaml)$
       - id: end-of-file-fixer
-        exclude: ^.*Dockerfile$
+        exclude: ^.*(Dockerfile|docker-compose\.yaml)$
       - id: check-yaml
-        exclude: ^.*Dockerfile$
+        exclude: ^.*(Dockerfile|docker-compose\.yaml)$
       - id: check-json
-        exclude: ^.*Dockerfile$
+        exclude: ^.*(Dockerfile|docker-compose\.yaml)$
       - id: check-added-large-files
-        exclude: ^.*Dockerfile$
+        exclude: ^.*(Dockerfile|docker-compose\.yaml)$
 
   - repo: https://github.com/psf/black
     rev: 22.3.0
     hooks:
       - id: black
-        exclude: ^.*Dockerfile$
+        exclude: ^.*(Dockerfile|docker-compose\.yaml)$
 
   - repo: https://github.com/PyCQA/flake8
     rev: 4.0.1
     hooks:
       - id: flake8
-        exclude: ^.*Dockerfile$
+        exclude: ^.*(Dockerfile|docker-compose\.yaml)$
         args: [--max-line-length=120]
 
   - repo: https://github.com/necaris/pre-commit-pyright
     rev: '1.1.53'
     hooks:
       - id: pyright
-        exclude: ^.*Dockerfile$
+        exclude: ^.*(Dockerfile|docker-compose\.yaml)$
