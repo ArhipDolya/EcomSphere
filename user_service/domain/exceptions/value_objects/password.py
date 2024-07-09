@@ -7,4 +7,4 @@ from user_service.domain.exceptions.base import DomainException
 class InvalidPasswordException(DomainException):
     @property
     def message(self):
-        return f"Invalid password"
+        return "Invalid password"
