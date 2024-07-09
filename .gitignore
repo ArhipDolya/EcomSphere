@@ -23,4 +23,4 @@ venv.bak/
 .vscode/
 
 
-user-service/.env
+user_service/.env
