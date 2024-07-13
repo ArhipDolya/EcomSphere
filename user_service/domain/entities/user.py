@@ -28,7 +28,9 @@ class User(BaseEntity):
             updated_at=datetime.now(),
         )
         updated_user.register_event(
-            UserUpdatedEvent(user_id=self.id, username=str(new_username), email=str(self.email))
+            UserUpdatedEvent(
+                user_id=self.id, username=str(new_username), email=str(self.email)
+            )
         )
         return updated_user
 
@@ -43,7 +45,9 @@ class User(BaseEntity):
             updated_at=datetime.now(),
         )
         updated_user.register_event(
-            UserUpdatedEvent(user_id=self.id, username=str(self.username), email=str(new_email))
+            UserUpdatedEvent(
+                user_id=self.id, username=str(self.username), email=str(new_email)
+            )
         )
         return updated_user
 
@@ -58,11 +62,15 @@ class User(BaseEntity):
             updated_at=datetime.now(),
         )
         updated_user.register_event(
-            UserUpdatedEvent(user_id=self.id, username=str(self.username), email=str(self.email))
+            UserUpdatedEvent(
+                user_id=self.id, username=str(self.username), email=str(self.email)
+            )
         )
         return updated_user
 
     def delete(self) -> None:
         self.register_event(
-            UserDeletedEvent(user_id=self.id, username=str(self.username), email=str(self.email))
+            UserDeletedEvent(
+                user_id=self.id, username=str(self.username), email=str(self.email)
+            )
         )
