@@ -1,6 +1,6 @@
 DC = docker compose
 EXEC = docker-compose exec
-APP_FILE = user_service/docker-compose/app.yaml
+APP_FILE = docker-compose/app.yaml
 APP_CONTAINER = user_service
 
 .PHONY: app
