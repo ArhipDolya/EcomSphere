@@ -17,18 +17,7 @@ class Email(BaseValueObject):
 
     value: str
 
-    def __post_init__(self):
-        """
-        Post-initialization method to validate the email.
-
-        This method is automatically called after the dataclass's
-        __init__ method. It ensures that the email meets the
-        specified validation criteria.
-        """
-        if not self._validate(self.value):
-            raise InvalidEmailException(self.value)
-
-    def _validate(self, value: str) -> bool:
+    def _validate(self) -> None:
         """
         Validate the email address.
 
@@ -38,4 +27,8 @@ class Email(BaseValueObject):
         Returns:
             bool: True if the email address is valid, False otherwise.
         """
-        return bool(re.match(r"[^@]+@[^@]+\.[^@]+", value))
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", self.value):
+            raise InvalidEmailException(self.value)
+
+    def __str__(self) -> str:
+        return self.value
