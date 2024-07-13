@@ -25,9 +25,3 @@ repos:
       - id: flake8
         exclude: ^.*(Dockerfile|docker-compose\.yaml)$
         args: [--max-line-length=120]
-
-  - repo: https://github.com/necaris/pre-commit-pyright
-    rev: '1.1.53'
-    hooks:
-      - id: pyright
-        exclude: ^.*(Dockerfile|docker-compose\.yaml)$
