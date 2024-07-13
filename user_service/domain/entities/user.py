@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from datetime import datetime
 
 from user_service.domain.entities.base import BaseEntity
 from user_service.domain.events.user import UserDeletedEvent, UserUpdatedEvent
@@ -25,7 +24,6 @@ class User(BaseEntity):
             password=self.password,
             addresses=self.addresses,
             created_at=self.created_at,
-            updated_at=datetime.now(),
         )
         updated_user.register_event(
             UserUpdatedEvent(
@@ -42,7 +40,6 @@ class User(BaseEntity):
             password=self.password,
             addresses=self.addresses,
             created_at=self.created_at,
-            updated_at=datetime.now(),
         )
         updated_user.register_event(
             UserUpdatedEvent(
@@ -59,7 +56,6 @@ class User(BaseEntity):
             password=new_password,
             addresses=self.addresses,
             created_at=self.created_at,
-            updated_at=datetime.now(),
         )
         updated_user.register_event(
             UserUpdatedEvent(
