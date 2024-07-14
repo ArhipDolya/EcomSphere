@@ -7,7 +7,7 @@ from datetime import datetime
 from user_service.domain.events.base import BaseEvent
 
 
-@dataclass
+@dataclass(frozen=True)
 class BaseEntity:
     """
     Base entity class with common attributes.
