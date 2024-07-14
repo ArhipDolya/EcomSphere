@@ -31,8 +31,7 @@ class Password(BaseValueObject):
         """
         if not (
             len(self.value) >= 8
-            and re.search(r"[A-Z]", self.value)
             and re.search(r"[a-z]", self.value)
             and re.search(r"\d", self.value)
         ):
-            raise InvalidPasswordException(self.value)
+            raise InvalidPasswordException()
