@@ -47,7 +47,7 @@ class User(BaseEntity):
         )
         updated_user.register_event(
             UserUpdatedEvent(
-                user_id=str(self.id), username=str(new_username), email=str(self.email)
+                user_id=str(self.oid), username=str(new_username), email=str(self.email)
             )
         )
         return updated_user
@@ -63,7 +63,7 @@ class User(BaseEntity):
         )
         updated_user.register_event(
             UserUpdatedEvent(
-                user_id=str(self.id), username=str(self.username), email=str(new_email)
+                user_id=str(self.oid), username=str(self.username), email=str(new_email)
             )
         )
         return updated_user
