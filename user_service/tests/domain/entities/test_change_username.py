@@ -1,5 +1,11 @@
+import pytest
+
 from user_service.domain.entities.user import User
 from user_service.domain.events.user import UserUpdatedEvent
+from user_service.domain.exceptions.value_objects.username import (
+    EmptyUsernameException,
+    TooLongUsernameException,
+)
 from user_service.domain.value_objects.email import Email
 from user_service.domain.value_objects.password import Password
 from user_service.domain.value_objects.username import Username
@@ -28,3 +34,23 @@ def test_change_username(
     assert event.user_id == str(user.oid)
     assert event.username == str(new_username)
     assert event.email == str(user_data["email"])
+
+
+def test_change_username_empty_string(
+    user_data: dict[str, Username | Email | Password], new_username: Username
+) -> None:
+    user = User.create(**user_data)
+
+    with pytest.raises(EmptyUsernameException):
+        new_username = Username("")
+        user.change_username(new_username=new_username)
+
+
+def test_change_username_too_long(
+    user_data: dict[str, Username | Email | Password], new_username: Username
+) -> None:
+    user = User.create(**user_data)
+
+    with pytest.raises(TooLongUsernameException):
+        new_username = Username("username" * 23)
+        user.change_username(new_username=new_username)
