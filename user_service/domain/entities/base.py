@@ -7,7 +7,7 @@ from datetime import datetime
 from user_service.domain.events.base import BaseEvent
 
 
-@dataclass
+@dataclass(frozen=True)
 class BaseEntity:
     """
     Base entity class with common attributes.
@@ -41,7 +41,7 @@ class BaseEntity:
         self._events.append(event)
 
     def pull_events(self) -> list[BaseEvent]:
-        registered_events = copy(self._events)
+        registered_events = copy.copy(self._events)
         self._events.clear()
 
         return registered_events
