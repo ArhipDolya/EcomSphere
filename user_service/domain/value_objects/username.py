@@ -20,9 +20,7 @@ class Username(BaseValueObject):
     value: str | None
 
     def _validate(self) -> None:
-        if self.value is None:
-            return
-        if len(self.value) == 0:
+        if not self.value:
             raise EmptyUsernameException(self.value)
         if len(self.value) > MAX_USERNAME_LENGTH:
             raise TooLongUsernameException(self.value)

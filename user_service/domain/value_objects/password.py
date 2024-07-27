@@ -3,6 +3,7 @@ import re
 from dataclasses import dataclass
 
 from user_service.domain.exceptions.value_objects.password import (
+    EmptyPasswordException,
     InvalidPasswordException,
 )
 from user_service.domain.value_objects.base import BaseValueObject
@@ -29,10 +30,12 @@ class Password(BaseValueObject):
         Returns:
             bool: True if the password is valid, False otherwise.
         """
+        if not self.value:
+            raise EmptyPasswordException()
+
         if not (
             len(self.value) >= 8
-            and re.search(r"[A-Z]", self.value)
             and re.search(r"[a-z]", self.value)
             and re.search(r"\d", self.value)
         ):
-            raise InvalidPasswordException(self.value)
+            raise InvalidPasswordException()

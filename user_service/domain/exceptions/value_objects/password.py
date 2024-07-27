@@ -8,3 +8,10 @@ class InvalidPasswordException(DomainException):
     @property
     def message(self):
         return "Invalid password"
+
+
+@dataclass(eq=False)
+class EmptyPasswordException(DomainException):
+    @property
+    def message(self):
+        return "Password cannot be empty"

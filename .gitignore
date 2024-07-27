@@ -24,3 +24,4 @@ venv.bak/
 
 
 user_service/.env
+.pytest_cache*

@@ -2,7 +2,10 @@ import re
 
 from dataclasses import dataclass
 
-from user_service.domain.exceptions.value_objects.email import InvalidEmailException
+from user_service.domain.exceptions.value_objects.email import (
+    EmptyEmailException,
+    InvalidEmailException,
+)
 from user_service.domain.value_objects.base import BaseValueObject
 
 
@@ -27,6 +30,9 @@ class Email(BaseValueObject):
         Returns:
             bool: True if the email address is valid, False otherwise.
         """
+        if not self.value:
+            raise EmptyEmailException()
+
         if not re.match(r"[^@]+@[^@]+\.[^@]+", self.value):
             raise InvalidEmailException(self.value)
 
