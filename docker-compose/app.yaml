@@ -5,6 +5,7 @@ services:
     build:
       context: ../user_service
       dockerfile: Dockerfile
+    container_name: user_service
     ports:
       - "8000:8000"
     command: "uvicorn --factory application.main:create_app --reload --host 0.0.0.0 --port 8000"
@@ -12,3 +13,7 @@ services:
       - ../user_service/.env
     volumes:
       - ../user_service:/user_service
+      - user_service_data:/data
+
+volumes:
+  user_service_data:
