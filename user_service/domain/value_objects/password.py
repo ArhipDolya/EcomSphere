@@ -1,3 +1,4 @@
+import bcrypt
 import re
 
 from dataclasses import dataclass
@@ -39,3 +40,11 @@ class Password(BaseValueObject):
             and re.search(r"\d", self.value)
         ):
             raise InvalidPasswordException()
+
+    @classmethod
+    def create(cls, password: str) -> "Password":
+        hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+        return cls(value=hashed_password.decode())
+
+    def verify(self, password: str) -> bool:
+        return bcrypt.checkpw(password.encode(), self.value.encode())
