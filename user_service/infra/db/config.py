@@ -17,3 +17,4 @@ class DBConfig(BaseSettings):
 
     class Config:
         env_file = ".env"
+        extra = "ignore"
