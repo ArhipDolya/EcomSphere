@@ -22,3 +22,19 @@ class UserDeletedEvent(BaseEvent):
     user_id: str
     username: str
     email: str
+
+
+@dataclass(frozen=True)
+class UserRoleAddedEvent(BaseEvent):
+    user_id: str
+    username: str
+    email: str
+    role: str
+
+
+@dataclass(frozen=True)
+class UserRoleRemovedEvent(BaseEvent):
+    user_id: str
+    username: str
+    email: str
+    role: str
